@@ -6,33 +6,43 @@
     <title>imgur oauth</title>
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script>
-    function enviaImgur(){
+      function enviaImgur(){
 
-      try {
-          var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
-      } catch(e) {
-          var img = document.getElementById('canvas').toDataURL().split(',')[1];
+        try {
+            var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
+        } catch(e) {
+            var img = document.getElementById('canvas').toDataURL().split(',')[1];
+        }
+
+        $.ajax({
+            url: 'https://api.imgur.com/3/image',
+            type: 'post',
+            headers: {
+                Authorization: 'Client-ID 2dee90509667881'
+            },
+            data: {
+                image: img
+            },
+            dataType: 'json',
+            success: function(response) {
+                if(response.success) {
+                    verificaImagem(response.data.link);
+
+                }
+            }
+        });
       }
-
-      $.ajax({
-          url: 'https://api.imgur.com/3/image',
-          type: 'post',
-          headers: {
-              Authorization: 'Client-ID 2dee90509667881'
-          },
-          data: {
-              image: img
-          },
-          dataType: 'json',
-          success: function(response) {
-            console.log(response);
-              // if(response.success) {
-              //     window.location = response.data.link;
-              // }
-          }
-      });
-    }
-    </script>
+      function verificaImagem(url){
+        $.ajax({
+            url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=91f2fe550c3c756c2725dde47b62497f92bc6a30&url='+url+'&classifier_ids=PESSOAS_1376588462&version=2016-05-20',
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+              console.log(response);              
+            }
+        });
+      }      
+      </script>
     <style>
       .hidden {
         display: none;

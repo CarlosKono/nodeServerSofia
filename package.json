@@ -3,7 +3,8 @@
 	"version": "0.0.1",
     "private": true,
 	"scripts": {
-		"start": "node app.js"
+		  "start": "node app.js & echo $! > .pid",
+  		  "stop": "taskkill /f /im node.exe"
 	},
 	"dependencies": {
 		"express": "4.13.x",
@@ -14,4 +15,6 @@
 	"engines": {
 		"node": "4.2.x"
 	} 
+
+
 }

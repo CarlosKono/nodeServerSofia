@@ -1,20 +1,19 @@
 {
-	"name": "HelloWorldNodeApp",
-	"version": "0.0.1",
-    "private": true,
-	"scripts": {
-		  "start": "node app.js & echo $! > .pid",
-  		  "stop": "taskkill /f /im node.exe"
-	},
-	"dependencies": {
-		"express": "4.13.x",
-		"cfenv": "1.0.x",
-		"node-red-contrib-browser-utils": "0.0.5"
-	},
-	"repository": {},
-	"engines": {
-		"node": "4.2.x"
-	} 
-
-
+  "name": "HelloWorldNodeApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js & echo $! > .pid",
+    "stop": "taskkill /f /im node.exe"
+  },
+  "dependencies": {
+    "cfenv": "1.0.x",
+    "express": "4.13.x",
+    "node-red-contrib-browser-utils": "0.0.5",
+    "watson-developer-cloud": "^2.33.0"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.2.x"
+  }
 }

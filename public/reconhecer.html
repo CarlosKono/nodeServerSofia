@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- 
+
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -24,7 +24,7 @@
             },
             dataType: 'json',
             success: function(response) {
-                if(response.success) {                
+                if(response.success) {
                     verificaImagem(response.data.link);
                     console.log(response.data.link);
 
@@ -56,13 +56,13 @@
 
                 }
             }
-        });        
+        });
 
       }
       function verificaImagem(url){
         $.ajax({
             // leone
-            // url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=91f2fe550c3c756c2725dde47b62497f92bc6a30&url='+url+'&classifier_ids=PESSOAS_93107418&version=2016-05-20',            
+            // url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=91f2fe550c3c756c2725dde47b62497f92bc6a30&url='+url+'&classifier_ids=PESSOAS_93107418&version=2016-05-20',
             url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=13716f028397a98e84d3ce2c39e672c5e021845e&url='+url+'&classifier_ids=pessoas_1190748711&version=2016-05-20&threshold=0.7',
             type: 'get',
             dataType: 'json',
@@ -73,14 +73,14 @@
                 buscaDocumentoCloudant('pessoas',id);
             }
         });
-      }      
+      }
       function buscaDocumentoCloudant(colecao,id){
         $.ajax({
             url: 'https://3cd45863-ca49-434b-94ec-227ea6fd71d5-bluemix.cloudant.com/'+colecao+'/'+id,
             type: 'get',
             headers: {
                 "Authorization": "Basic " + btoa("3cd45863-ca49-434b-94ec-227ea6fd71d5-bluemix" + ":" + "6e748c380babc520ac3e46f106dd6e4b5fd971bf918294b1f94fa3cca4c61b4f")
-              },  
+              },
             dataType: 'json',
             success: function(response) {
                 $("#resultado").html(JSON.stringify(response));
@@ -88,10 +88,10 @@
                 $("#resul_nome").html(response.nome);
                 $("#result_assinatura").attr("src",response.assinaturas[0].assinatura);
 
-              console.log(response);              
+              console.log(response);
             }
-        });        
-      
+        });
+
 
       }
       </script>
@@ -101,7 +101,7 @@
       }
     </style>
   </head>
- 
+
   <body>
 
     <video id="video"  autoplay></video>
@@ -129,7 +129,7 @@
         });
     }
 
-    /* Legacy code below: getUserMedia 
+    /* Legacy code below: getUserMedia
     else if(navigator.getUserMedia) { // Standard
         navigator.getUserMedia({ video: true }, function(stream) {
             video.src = stream;
@@ -160,7 +160,6 @@
       context.drawImage(video, 0, 0,video.videoWidth,video.videoHeight);
     });
     </script>
-    <input type="button" onClick="enviaImgur();" value="Sobe">
+    <input type="button" onClick="enviaImgur();" value="Sobe">.......
   </body>
 </html>
-

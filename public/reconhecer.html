@@ -63,7 +63,7 @@
         $.ajax({
             // leone
             // url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=91f2fe550c3c756c2725dde47b62497f92bc6a30&url='+url+'&classifier_ids=PESSOAS_93107418&version=2016-05-20',            
-            url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=13716f028397a98e84d3ce2c39e672c5e021845e&url='+url+'&classifier_ids=pessoas_1190748711&version=2016-05-20&threshold=0.7',
+            url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=13716f028397a98e84d3ce2c39e672c5e021845e&url='+url+'&classifier_ids=PESSOAS_1462124818&version=2016-05-20&threshold=0.7',
             type: 'get',
             dataType: 'json',
             success: function(response) {
@@ -93,6 +93,26 @@
         });        
       
 
+      }
+
+      function falaFrase(frase){
+                      console.log("a");              
+
+        $.ajax({
+            url: 'https://watson-api-explorer.mybluemix.net/text-to-speech/api/v1/synthesize?accept=audio%2Fogg%3Bcodecs%3Dopus&voice=pt-BR_IsabelaVoice&text=Rog%C3%A9rio%20seu%20gordo%20do%20caralho%20SEU%20VIADO',
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+
+
+              console.log(response);              
+            },
+           error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+           }
+        });             
+    
       }
       </script>
     <style>

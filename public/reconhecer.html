@@ -81,9 +81,10 @@
  
   <body>
 
-    <video id="video" width="1024" height="780" autoplay></video>
+    <video id="video"  autoplay></video>
     <button id="snap">Snap Photo</button>
-    <canvas id="canvas" ></canvas>
+    <div style="clear:both;"></div>
+    <canvas id="canvas" width="auto" height="0"></canvas>
     <div id="resultado"></div>
     <script>
 
@@ -120,12 +121,14 @@
 
     // Elements for taking the snapshot
     var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
     var video = document.getElementById('video');
+    var context = canvas.getContext('2d');
 
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-      context.drawImage(video, 0, 0);
+      canvas.width  = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0,video.videoWidth,video.videoHeight);
     });
     </script>
     <input type="button" onClick="enviaImgur();" value="Sobe">

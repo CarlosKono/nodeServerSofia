@@ -14,7 +14,7 @@ class ImagurController {
 
         $.ajax({
             url: 'https://api.imgur.com/3/image',
-            type: 'post',
+            type: 'post', 
             headers: {
                 Authorization: 'Client-ID 2dee90509667881'
             },
@@ -34,7 +34,7 @@ class ImagurController {
 
    verificaImagem(url) {
       $.ajax({
-          url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=13716f028397a98e84d3ce2c39e672c5e021845e &url='+url+'&classifier_ids=PESSOAS_1462124818&version=2016-05-20',
+          url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=13716f028397a98e84d3ce2c39e672c5e021845e&url='+url+'&classifier_ids=PESSOAS_1462124818&version=2016-05-20',
           type: 'get',
           dataType: 'json',
           success: function(response) {

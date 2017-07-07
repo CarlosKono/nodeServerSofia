@@ -30,6 +30,11 @@ app.get("/cadastrar", function(req, res) {
 	res.sendFile(path.join(__dirname + '/views/cadastrar.html'));
 });
 
+app.get("/reconhecer", function(req, res) {
+
+	res.sendFile(path.join(__dirname + '/views/reconhecer.html'));
+});
+
 app.get("/add", function(req, res) {
 	var name = req.body.name;
 	res.send(name);

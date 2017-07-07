@@ -15,6 +15,14 @@
       Render.getView("/cadastrar");
     });
 
+    var reconhecerBTN = document.getElementById("reconhecerBTN");
+    reconhecerBTN.addEventListener("click", function(event) {
+
+      event.preventDefault();
+
+      Render.getView("/reconhecer");
+    });
+
   }
 
   try {

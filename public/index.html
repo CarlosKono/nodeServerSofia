@@ -7,10 +7,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="stylesheets/bootstrap/css/bootstrap.css">
+
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <script src="javascript/RenderController.js" charset="utf-8"></script>
+
+  <script>
+    function enviaImgur(){
+
+      try {
+          var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
+      } catch(e) {
+          var img = document.getElementById('canvas').toDataURL().split(',')[1];
+      }
+
+      $.ajax({
+          url: 'https://api.imgur.com/3/image',
+          type: 'post',
+          headers: {
+              Authorization: 'Client-ID 2dee90509667881'
+          },
+          data: {
+              image: img
+          },
+          dataType: 'json',
+          success: function(response) {
+              if(response.success) {
+                  verificaImagem(response.data.link);
+
+              }
+          }
+      });
+    }
+    function verificaImagem(url){
+      $.ajax({
+          url: 'https://watson-api-explorer.mybluemix.net/visual-recognition/api/v3/classify?api_key=91f2fe550c3c756c2725dde47b62497f92bc6a30&url='+url+'&classifier_ids=PESSOAS_1376588462&version=2016-05-20',
+          type: 'get',
+          dataType: 'json',
+          success: function(response) {
+            console.log(response);
+          }
+      });
+    }
+    </script>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
+  <div>
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,15 +74,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="cadastrar.html">Cadastrar <span class="sr-only">(current)</span>
+        <li>
+          <a href="#" id="cadastrarBTN">
+            Cadastrar
           </a>
         </li>
-        <li><a href="reconhecer.html">Reconhecer Firma</a></li>
+        <li>
+          <a href="#" id="reconhecerBTN">Reconhecer Firma</a>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
   </div>
+
+  <div id="container" class="container">
+
+  </div>
+  <script src="javascript/main.js" charset="utf-8"></script>
+
 </body>
 </html>

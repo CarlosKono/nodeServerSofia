@@ -87,6 +87,7 @@
                 $("#resul_cpf").html(response.cpf);
                 $("#resul_nome").html(response.nome);
                 $("#result_assinatura").attr("src",response.assinaturas[0].assinatura);
+                falaFrase("Firma encontrada de "+response.nome);
 
               console.log(response);              
             }
@@ -96,22 +97,8 @@
       }
 
       function falaFrase(frase){
-                      console.log("a");              
-
-        $.ajax({
-            url: 'https://watson-api-explorer.mybluemix.net/text-to-speech/api/v1/synthesize?accept=audio%2Fogg%3Bcodecs%3Dopus&voice=pt-BR_IsabelaVoice&text=Rog%C3%A9rio%20seu%20gordo%20do%20caralho%20SEU%20VIADO',
-            type: 'get',
-            dataType: 'json',
-            success: function(response) {
-
-
-              console.log(response);              
-            },
-           error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status);
-            alert(thrownError);
-           }
-        });             
+        document.getElementById('audio').insertAdjacentHTML('beforeend', '<audio style="display:none;" id="audio-player" controls="controls" src="https://watson-api-explorer.mybluemix.net/text-to-speech/api/v1/synthesize?accept=audio%2Fogg%3Bcodecs%3Dopus&voice=pt-BR_IsabelaVoice&text='+frase+'" type="audio/ogg" autoplay>');
+           
     
       }
       </script>
@@ -134,6 +121,7 @@
         <p>Assinatura: <img id="result_assinatura"></img></p>
     </div>
     <div id="resultado"></div>
+    <div id="audio"></div>
 
     <script>
 

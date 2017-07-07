@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="stylesheets/bootstrap/css/bootstrap.css">
+
+  <script src="javascript/RenderController.js" charset="utf-8"></script>
 </head>
 
 <body>
-  <div class="container">
+  <div>
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,7 +30,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active">
-          <a href="cadastrar.html">Cadastrar <span class="sr-only">(current)</span>
+          <a href="#" id="cadastrarBTN">Cadastrar <span class="sr-only">(current)</span>
           </a>
         </li>
         <li><a href="reconhecer.html">Reconhecer Firma</a></li>
@@ -37,5 +39,11 @@
   </div><!-- /.container-fluid -->
 </nav>
   </div>
+
+  <div id="container" class="container">
+
+  </div>
+  <script src="javascript/main.js" charset="utf-8"></script>
+
 </body>
 </html>

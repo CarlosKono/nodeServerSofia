@@ -8,7 +8,6 @@
 // for more info, see: http://expressjs.com
 var express = require('express');
 var path = require('path');
-var watson = require('watson-developer-cloud');
 var fs = require('fs');
 
 // cfenv provides access to your Cloud Foundry environment
@@ -18,12 +17,7 @@ var cfenv = require('cfenv');
 // create a new express server
 var app = express();
 
-var bodyParser = require('body-parser');
 
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
 
 app.get("/cadastrar", function(req, res) {
 

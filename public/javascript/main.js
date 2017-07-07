@@ -1,4 +1,3 @@
-var spinner = new Spinner().spin();
 (function () {
 
   var container;
@@ -15,7 +14,9 @@ var spinner = new Spinner().spin();
 
       event.preventDefault();
 
-      Render.getView("/cadastrar");
+      Render.getView("/cadastrar", function(spinner) {
+        spinner.stop();
+      });
     });
 
     var reconhecerBTN = document.getElementById("reconhecerBTN");
@@ -23,7 +24,7 @@ var spinner = new Spinner().spin();
 
       event.preventDefault();
 
-      Render.getView("/reconhecer",function() {
+      Render.getView("/reconhecer",function(spinner) {
 
         Reconhecer.init();
         spinner.stop();

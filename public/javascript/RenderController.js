@@ -6,6 +6,8 @@ class RenderController {
   }
 
   getView(url, func) {
+
+    var spinner = new Spinner().spin();
     var target = document.getElementsByTagName("BODY")[0];
     target.appendChild(spinner.el);
 
@@ -15,7 +17,7 @@ class RenderController {
     oReq.onload = function () {
       $this.container.innerHTML = this.responseText;
 
-      setTimeout(func, 3000);
+      setTimeout(function() {func(spinner)}, 3000);
 
     };
     oReq.open("get", url, true);

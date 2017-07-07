@@ -105,9 +105,21 @@ class ReconhecerController {
 
   }
 
+  falaFrase(frase){
+
+    document.getElementById('audio').insertAdjacentHTML('beforeend', '<audio style="display:none;" id="audio-player" controls="controls" src="https://watson-api-explorer.mybluemix.net/text-to-speech/api/v1/synthesize?accept=audio%2Fogg%3Bcodecs%3Dopus&voice=pt-BR_IsabelaVoice&text='+frase+'" type="audio/ogg" autoplay>');
+
+  }
+
   verificaImagem(url) {
 
     let $this = this;
+
+    var spinner = new Spinner().spin();
+    var target = document.getElementsByTagName("BODY")[0];
+    target.appendChild(spinner.el);
+
+    $("#enviar").attr('disabled','disabled');
 
     $.ajax({
         // leone
@@ -116,16 +128,26 @@ class ReconhecerController {
         type: 'get',
         dataType: 'json',
         success: function(response) {
-            $("#resultado").html(JSON.stringify(response));
+            //$("#resultado").html(JSON.stringify(response));
             //  OBS PODE FAZER LOOP PARA TRAZER TODOS PROXIMOS. DEIXO COM VCS
 
-            var pessoa = {};
-            pessoa.id = 4;
+            var id;
+            var hasClassifiers;
+            window.response = response;
 
-            var images = response;
-            window.pessoa = response;
-  
-            $this.buscaDocumentoCloudant('pessoas', pessoa);
+            if(response.images[0].classifiers.length > 0) {
+
+              id = response.images[0].classifiers[0].classes[0].class.id;
+              $this.buscaDocumentoCloudant('pessoas', id);
+
+            } else {
+              $this.falaFrase("Não foi encontrada nenhuma ficha.");
+            }
+
+            spinner.stop();
+            $("#enviar").removeAttr('disabled');
+
+
         }
     });
   }
@@ -139,7 +161,7 @@ class ReconhecerController {
           },
         dataType: 'json',
         success: function(response) {
-            $("#resultado").html(JSON.stringify(response));
+            //$("#resultado").html(JSON.stringify(response));
             $("#resul_cpf").html(response.cpf);
             $("#resul_nome").html(response.nome);
             $("#result_assinatura").attr("src",response.assinaturas[0].assinatura);

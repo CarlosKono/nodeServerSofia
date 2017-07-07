@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>imgur oauth</title>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script>
+      function enviaImgur(){
+
+        try {
+            var img = document.getElementById('canvas').toDataURL('image/jpeg', 0.9).split(',')[1];
+        } catch(e) {
+            var img = document.getElementById('canvas').toDataURL().split(',')[1];
+        }
+        $.ajax({
+            url: 'https://api.imgur.com/3/image',
+            type: 'post',
+            headers: {
+                Authorization: 'Client-ID 2dee90509667881'
+            },
+            data: {
+                image: img
+            },
+            dataType: 'json',
+            success: function(response) {
+
+
+                if(response.success) {                
+                //     verificaImagem(response.data.link);
+                    $("#images").attr("href",response.data.link);
+                        document.getElementById("images").click();
+                }
+            }
+        });
+      
+     
+
+      }
+      </script>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+ 
+  <body>
+   <a id="images" href="http://dummyimage.com/600x400/000/fff.png" download>Download this image</a></p>
+
+    <video id="video"  autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <input type="button" onClick="enviaImgur();" value="Sobe">
+    <div style="clear:both;"></div>
+    <canvas id="canvas" width="auto" height="0"></canvas>
+    <div id="buscaBD">
+        <p>CPF:<span id="resul_cpf"></span></p>
+        <p>Nome:<span id="resul_nome"></span></p>
+        <p>Assinatura: <img id="result_assinatura"></img></p>
+    </div>
+    <div id="resultado"></div>
+
+    <script>
+
+    // Grab elements, create settings, etc.
+    var video = document.getElementById('video');
+
+    // Get access to the camera!
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        });
+    }
+
+    /* Legacy code below: getUserMedia 
+    else if(navigator.getUserMedia) { // Standard
+        navigator.getUserMedia({ video: true }, function(stream) {
+            video.src = stream;
+            video.play();
+        }, errBack);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+        navigator.webkitGetUserMedia({ video: true }, function(stream){
+            video.src = window.webkitURL.createObjectURL(stream);
+            video.play();
+        }, errBack);
+    } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+        navigator.mozGetUserMedia({ video: true }, function(stream){
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        }, errBack);
+    }
+    */
+
+    // Elements for taking the snapshot
+    var canvas = document.getElementById('canvas');
+    var video = document.getElementById('video');
+    var context = canvas.getContext('2d');
+
+    // Trigger photo take
+    document.getElementById("snap").addEventListener("click", function() {
+      canvas.width  = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0,video.videoWidth,video.videoHeight);
+    });
+    </script>
+  </body>
+</html>
+

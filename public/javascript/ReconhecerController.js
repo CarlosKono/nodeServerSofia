@@ -137,7 +137,7 @@ class ReconhecerController {
 
             if(response.images[0].classifiers.length > 0) {
 
-              id = response.images[0].classifiers[0].classes[0].class.id;
+              id = response.images[0].classifiers[0].classes[0].class;
               $this.buscaDocumentoCloudant('pessoas', id);
 
             } else {

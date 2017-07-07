@@ -8,9 +8,7 @@
   },
   "dependencies": {
     "cfenv": "1.0.x",
-    "express": "4.13.x",
-    "node-red-contrib-browser-utils": "0.0.5",
-    "watson-developer-cloud": "^2.33.0"
+    "express": "4.13.x"
   },
   "repository": {},
   "engines": {

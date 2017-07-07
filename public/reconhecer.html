@@ -64,6 +64,7 @@
             type: 'get',
             dataType: 'json',
             success: function(response) {
+                $("#resultado").html(JSON.stringify(response));
               console.log(response);              
             }
         });
@@ -81,7 +82,7 @@
     <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Snap Photo</button>
     <canvas id="canvas" width="640" height="480"></canvas>
-
+    <div id="resultado"></div>
     <script>
 
     // Grab elements, create settings, etc.

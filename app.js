@@ -30,7 +30,7 @@ app.get("/reconhecer", function(req, res) {
 });
 
 app.get("/add", function(req, res) {
-	var name = req.body.name;
+	
 	res.send(name);
 	if (false) {
 		var visual_recognition = watson.visual_recognition({

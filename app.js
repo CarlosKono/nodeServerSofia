@@ -25,9 +25,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-app.use(express.json());       // to support JSON-encoded bodies
-app.use(express.urlencoded()); // to support URL-encoded bodies
-
 app.get("/cadastrar", function(req, res) {
 
 	res.sendFile(path.join(__dirname + '/views/cadastrar.html'));

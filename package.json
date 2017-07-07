@@ -2,15 +2,20 @@
   "name": "HelloWorldNodeApp",
   "version": "0.0.1",
   "private": true,
-	"scripts": {
-		  "start": "node app.js & echo $! > .pid",
-  		 "stop": "taskkill /f /im node.exe"
-	},
+  "scripts": {
+    "start": "node app.js & echo $! > .pid",
+    "stop": "taskkill /f /im node.exe"
+  },
   "dependencies": {
+    "body": "^5.1.0",
     "body-parser": "^1.17.2",
     "cfenv": "1.0.x",
+    "co-body": "^5.1.1",
+    "connect": "^3.6.2",
     "express": "4.13.x",
-    "node-red-contrib-browser-utils": "0.0.5"
+    "express-json": "^1.0.0",
+    "node-red-contrib-browser-utils": "0.0.5",
+    "watson-developer-cloud": "^2.33.0"
   },
   "repository": {},
   "engines": {
